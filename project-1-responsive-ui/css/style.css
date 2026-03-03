@@ -16,8 +16,6 @@ body {
     line-height: 1.6;
 }
 
-/* NAVBAR */
-
 .navbar {
     background: white;
     padding: 18px 40px;
@@ -51,8 +49,6 @@ body {
     cursor: pointer;
 }
 
-/* PAGE TITLE */
-
 .page-title {
     text-align: center;
     padding: 50px 0;
@@ -63,8 +59,6 @@ body {
     font-weight: 600;
     color: var(--mocha);
 }
-
-/* CART */
 
 .cart-container {
     padding: 20px 40px;
@@ -108,7 +102,6 @@ body {
     margin-bottom: 6px;
 }
 
-/* PRICE NOW USES BLUE */
 .price {
     font-weight: bold;
     color: var(--blue);
@@ -125,8 +118,6 @@ body {
     color: white;
     cursor: pointer;
 }
-
-/* ORDER SUMMARY */
 
 .order-summary {
     background: white;
@@ -172,8 +163,6 @@ body {
     color: var(--mocha);
 }
 
-/* FEATURES */
-
 .features {
     background: white;
     margin: 40px;
@@ -184,12 +173,9 @@ body {
     text-align: center;
 }
 
-/* FEATURE HEADINGS USE BLUE */
 .features h4 {
     color: var(--blue);
 }
-
-/* NEWSLETTER BUTTON USES BLUE */
 
 .newsletter {
     background: white;
@@ -212,8 +198,6 @@ body {
     border: none;
 }
 
-/* FOOTER */
-
 footer {
     background: var(--mocha);
     color: white;
@@ -221,8 +205,6 @@ footer {
     padding: 25px;
     margin-top: 40px;
 }
-
-/* TABLET */
 
 @media (min-width: 768px) {
 
