@@ -1,5 +1,6 @@
 const express = require("express")
 const cors = require("cors")
+const pool = require("./db")
 
 const app = express()
 const PORT = 5000
@@ -7,42 +8,43 @@ const PORT = 5000
 app.use(cors())
 app.use(express.json())
 
-let products = [
-  { id: 1, name: "Lipstick", price: 350 },
-  { id: 2, name: "Powder", price: 420 },
-  { id: 3, name: "Sunscreen", price: 480 }
-]
+app.get("/products", async (req,res)=>{
 
-app.get("/", (req, res) => {
-  res.send("Backend API is running")
+  try{
+    const result = await pool.query("SELECT * FROM products")
+    res.json(result.rows)
+  }catch(err){
+    res.status(500).json({message:"Server error"})
+  }
+
 })
 
-app.get("/products", (req, res) => {
-  res.status(200).json(products)
-})
-
-app.post("/products", (req, res) => {
+app.post("/products", async (req,res)=>{
 
   const name = req.body.name
   const price = req.body.price
 
   if(!name || !price){
-    return res.status(400).json({ message: "Name and price required" })
+    return res.status(400).json({message:"Name and price required"})
   }
 
   if(price <= 0){
-    return res.status(400).json({ message: "Price must be positive" })
+    return res.status(400).json({message:"Price must be positive"})
   }
 
-  const newProduct = {
-    id: products.length + 1,
-    name: name,
-    price: price
+  try{
+
+    const result = await pool.query(
+      "INSERT INTO products (name,price) VALUES ($1,$2) RETURNING *",
+      [name,price]
+    )
+
+    res.status(201).json(result.rows[0])
+
+  }catch(err){
+    res.status(500).json({message:"Server error"})
   }
 
-  products.push(newProduct)
-
-  res.status(201).json(newProduct)
 })
 
 app.listen(PORT, () => {
