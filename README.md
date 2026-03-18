@@ -294,6 +294,103 @@ This confirms that the backend is successfully connected to PostgreSQL.
 
 ---
 
+# Task 4 — Frontend and Backend Integration
+
+In this task the frontend was connected with the backend API to create a complete full stack application.
+
+Instead of using static product data in HTML, the frontend now fetches product data from the backend API using asynchronous requests (fetch API).
+
+The data received from the backend is dynamically displayed on the UI. Basic error handling is also implemented to handle cases where the backend is not running.
+
+---
+
+## How to Check Task 4
+
+Step 1  
+
+Start the backend server.
+
+```
+cd project-2-backend-api
+node server.js
+```
+
+Step 2  
+
+Open the frontend.
+
+Open:
+
+project-1-responsive-ui/index.html
+
+Step 3  
+
+You should now see products loaded dynamically from the backend.
+
+---
+
+## Dynamic Data Test
+
+Step 1  
+
+Open **Postman**
+
+Step 2  
+
+Send POST request:
+
+```
+http://localhost:5000/products
+```
+
+Step 3  
+
+Go to Body → raw → JSON
+
+Step 4  
+
+Paste:
+
+```
+{
+"name":"Serum",
+"price":600
+}
+```
+
+Step 5  
+
+Click **Send**
+
+Step 6  
+
+Now refresh the frontend page.
+
+You should see the new product added.
+
+---
+
+## Error Handling Test
+
+Step 1  
+
+Stop the backend server.
+
+Step 2  
+
+Refresh the frontend.
+
+Step 3  
+
+You will see an error message like:
+
+"error loading data"
+
+This confirms error handling is working.
+
+---
+
 # Author
+
 Deodatta Pagar  
 DecodeLabs Internship Project
