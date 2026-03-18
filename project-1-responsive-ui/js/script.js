@@ -1,18 +1,34 @@
-var plus = document.querySelectorAll(".plus");
-var minus = document.querySelectorAll(".minus");
+var container = document.querySelector(".cart-items")
 
-plus.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        var number = btn.previousElementSibling;
-        number.innerText = parseInt(number.innerText) + 1;
-    });
-});
+fetch("http://localhost:5000/products")
+.then(function(res){
+return res.json()
+})
+.then(function(data){
 
-minus.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        var number = btn.nextElementSibling;
-        if (parseInt(number.innerText) > 1) {
-            number.innerText = parseInt(number.innerText) - 1;
-        }
-    });
-});
+container.innerHTML=""
+
+data.forEach(function(item){
+
+container.innerHTML += `
+<div class="cart-item grey-bg">
+<img src="assets/product1.jpg">
+<div class="item-details">
+<h3>${item.name}</h3>
+<p class="price">Rs. ${item.price}</p>
+
+<div class="quantity">
+<button class="minus">-</button>
+<span>1</span>
+<button class="plus">+</button>
+</div>
+</div>
+</div>
+`
+
+})
+
+})
+.catch(function(){
+container.innerHTML = "error loading data"
+})
